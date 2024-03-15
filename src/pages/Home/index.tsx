@@ -1,15 +1,18 @@
 import Guide from '@/components/Guide';
-import { trim } from '@/utils/format';
 import { PageContainer } from '@ant-design/pro-components';
-import { useModel } from '@umijs/max';
+import { Button } from 'antd';
 import styles from './index.less';
 
 const HomePage: React.FC = () => {
-  const { name } = useModel('global');
+  const name = 'ROS 考试系统';
   return (
     <PageContainer ghost>
+      <div className={styles.loginBlock}>
+        <Button className={styles.button}>登录</Button>
+        <Button className={styles.button}>注册</Button>
+      </div>
       <div className={styles.container}>
-        <Guide name={trim(name)} />
+        <Guide name={name} />
       </div>
     </PageContainer>
   );

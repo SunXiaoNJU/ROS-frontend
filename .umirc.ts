@@ -5,9 +5,11 @@ export default defineConfig({
   access: {},
   model: {},
   initialState: {},
-  request: {},
+  request: {
+    dataField: '',
+  },
   layout: {
-    title: '@umijs/max',
+    title: 'ROS 考试系统',
   },
   routes: [
     {
@@ -20,16 +22,15 @@ export default defineConfig({
       component: './Home',
     },
     {
+      name: '文件上传',
+      path: '/submit',
+      component: './Submit',
+    },
+    {
       name: '权限演示',
       path: '/access',
       component: './Access',
     },
-    {
-      name: ' CRUD 示例',
-      path: '/table',
-      component: './Table',
-    },
   ],
   npmClient: 'pnpm',
 });
-
