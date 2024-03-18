@@ -8,9 +8,7 @@ export default defineConfig({
   request: {
     dataField: '',
   },
-  layout: {
-    title: 'ROS 考试系统',
-  },
+  layout: {},
   routes: [
     {
       path: '/',

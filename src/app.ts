@@ -11,6 +11,7 @@ export const layout = () => {
   return {
     // logo: 'https://img.alicdn.com/tfs/TB1YHEpwUT1gK0jSZFhXXaAtVXa-28-27.svg',
     logo: '/ros.svg',
+    title: 'ROS 考试系统',
     menu: {
       locale: false,
     },

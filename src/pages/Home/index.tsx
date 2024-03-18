@@ -1,19 +1,32 @@
 import Guide from '@/components/Guide';
+import Login from '@/components/Login';
+import { DEFAULT_NAME } from '@/constants';
 import { PageContainer } from '@ant-design/pro-components';
-import { Button } from 'antd';
+import { Button, Image } from 'antd';
+import { useState } from 'react';
 import styles from './index.less';
 
 const HomePage: React.FC = () => {
-  const name = 'ROS 考试系统';
+  const name = DEFAULT_NAME;
+  const [ishide, setIshide] = useState(true);
+
+  const pageSide = (
+    <div className={styles.img}>
+      <Image src="/ros.svg" style={{ width: '600px' }}></Image>
+    </div>
+  );
+
   return (
     <PageContainer ghost>
       <div className={styles.loginBlock}>
-        <Button className={styles.button}>登录</Button>
-        <Button className={styles.button}>注册</Button>
+        <Button className={styles.loginButton} onClick={() => setIshide(false)}>
+          登录/注册
+        </Button>
       </div>
-      <div className={styles.container}>
+      <div>
         <Guide name={name} />
       </div>
+      {ishide ? pageSide : <Login />}
     </PageContainer>
   );
 };

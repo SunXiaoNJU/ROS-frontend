@@ -14,7 +14,7 @@ const Submit: React.FC = () => {
   const openNotificationWithIcon = (type: NotificationType) => {
     api[type]({
       message: '上传文件格式要求',
-      description: '上传文件须为.zip或.rar格式的压缩文件',
+      description: '不支持上传文件夹，须压缩成.rar或.zip格式进行上传',
     });
   };
 

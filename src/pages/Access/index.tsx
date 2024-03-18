@@ -55,7 +55,7 @@ const AccessPage: React.FC = () => {
       </Access>
       <Tmp content="hello"></Tmp>
       <div ref={counterRef}>
-        {counter}
+        {`counter结果为${counter}`}
         <Button onClick={throttled(1)}>throttled test</Button>
         <>{pullLoading()}</>
       </div>
