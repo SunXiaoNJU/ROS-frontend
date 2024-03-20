@@ -1,15 +1,22 @@
-// import useUser from '@/models/global';
-import { Button } from 'antd';
-import { useState } from 'react';
+import useUser from '@/models/global';
+import { Button, Input } from 'antd';
+import { useEffect, useState } from 'react';
 import styles from './Login.less';
 
 const Login: React.FC = () => {
-  // const { setId, access, setAccess } = useUser();
   const [isgx, setIsgx] = useState(false);
   const [istxr, setIstxr] = useState(false);
   const [istxl, setIstxl] = useState(false);
   const [isz, setIsz] = useState(false);
   const [ishidden, setIshidden] = useState(false);
+
+  const [signupId, setSignupId] = useState();
+  const [signupPhone, setSignupPhone] = useState();
+  const [signupPwd, setSignupPwd] = useState();
+  const [signinId, setSigninId] = useState();
+  const [signinPwd, setSigninPwd] = useState();
+
+  const { setId, access, setAccess } = useUser();
 
   const getButtons = (e: any) => e.preventDefault();
 
@@ -24,6 +31,10 @@ const Login: React.FC = () => {
     setIshidden(!ishidden);
   };
 
+  useEffect(() => {
+    console.log(signupId, signupPhone, signupPwd, signinId, signinPwd);
+  });
+
   return (
     <div className={styles.box}>
       <div className={styles.shell}>
@@ -33,20 +44,26 @@ const Login: React.FC = () => {
           <form className={styles.form}>
             <h2 className={styles.title}>注册账号</h2>
             <span className={styles.formSpan}>请凭学号注册账号</span>
-            <input
+            <Input
               type="text"
               className={styles.formInput}
               placeholder="学号"
+              value={signupId}
+              onChange={(e: any) => setSignupId(e.target.value)}
             />
-            <input
+            <Input
               type="text"
               className={styles.formInput}
               placeholder="电话"
+              value={signupPhone}
+              onChange={(e: any) => setSignupPhone(e.target.value)}
             />
-            <input
+            <Input
               type="password"
               className={styles.formInput}
               placeholder="密码"
+              value={signupPwd}
+              onChange={(e: any) => setSignupPwd(e.target.value)}
             />
             <Button
               className={`${styles.button} ${styles.submit}`}
@@ -62,16 +79,20 @@ const Login: React.FC = () => {
         >
           <form className={styles.form}>
             <h2 className={styles.title}>登入账号</h2>
-            <span className={styles.formSpan}>请凭学号登录账户</span>
-            <input
+            <span className={styles.formSpan}>请凭学号登录账号</span>
+            <Input
               type="text"
               className={styles.formInput}
               placeholder="学号"
+              value={signinId}
+              onChange={(e: any) => setSigninId(e.target.value)}
             />
-            <input
+            <Input
               type="password"
               className={styles.formInput}
               placeholder="密码"
+              value={signinPwd}
+              onChange={(e: any) => setSigninPwd(e.target.value)}
             />
             <i className={styles.formLink}>忘记密码？</i>
             <Button
