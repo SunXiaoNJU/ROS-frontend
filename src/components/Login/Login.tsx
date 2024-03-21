@@ -1,6 +1,7 @@
 import useUser from '@/models/global';
+import { request } from '@umijs/max';
 import { Button, Input } from 'antd';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from './Login.less';
 
 const Login: React.FC = () => {
@@ -10,15 +11,42 @@ const Login: React.FC = () => {
   const [isz, setIsz] = useState(false);
   const [ishidden, setIshidden] = useState(false);
 
-  const [signupId, setSignupId] = useState();
-  const [signupPhone, setSignupPhone] = useState();
-  const [signupPwd, setSignupPwd] = useState();
-  const [signinId, setSigninId] = useState();
-  const [signinPwd, setSigninPwd] = useState();
+  const [signupId, setSignupId] = useState('');
+  const [signupPhone, setSignupPhone] = useState('');
+  const [signupPwd, setSignupPwd] = useState('');
+  const [signinId, setSigninId] = useState('');
+  const [signinPwd, setSigninPwd] = useState('');
 
   const { setId, access, setAccess } = useUser();
 
-  const getButtons = (e: any) => e.preventDefault();
+  const getSignUpButtons = (e: any) => {
+    e.preventDefault();
+    request(
+      'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188', // url
+      {
+        params: {
+          id: signupId,
+          phone: signupPhone,
+          pwd: signupPwd,
+        },
+      },
+    );
+  };
+
+  const getSignInButtons = (e: any) => {
+    e.preventDefault();
+    request(
+      'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188', // url
+      {
+        params: {
+          id: signinId,
+          pwd: signinPwd,
+        },
+      },
+    );
+    setId(signinId);
+    setAccess(true);
+  };
 
   const changeForm = () => {
     setIsgx(true);
@@ -30,10 +58,6 @@ const Login: React.FC = () => {
     setIsz(!isz);
     setIshidden(!ishidden);
   };
-
-  useEffect(() => {
-    console.log(signupId, signupPhone, signupPwd, signinId, signinPwd);
-  });
 
   return (
     <div className={styles.box}>
@@ -67,7 +91,7 @@ const Login: React.FC = () => {
             />
             <Button
               className={`${styles.button} ${styles.submit}`}
-              onClick={getButtons}
+              onClick={getSignUpButtons}
             >
               SIGN UP
             </Button>
@@ -97,7 +121,7 @@ const Login: React.FC = () => {
             <i className={styles.formLink}>忘记密码？</i>
             <Button
               className={`${styles.button} ${styles.submit}`}
-              onClick={getButtons}
+              onClick={getSignInButtons}
             >
               SIGN IN
             </Button>
