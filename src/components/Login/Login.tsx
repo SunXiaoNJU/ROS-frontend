@@ -19,8 +19,7 @@ const Login: React.FC = () => {
 
   const { setId, access, setAccess } = useUser();
 
-  const getSignUpButtons = (e: any) => {
-    e.preventDefault();
+  const signupRequest = () => {
     request(
       'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188', // url
       {
@@ -33,8 +32,7 @@ const Login: React.FC = () => {
     );
   };
 
-  const getSignInButtons = (e: any) => {
-    e.preventDefault();
+  const signinRequest = () => {
     request(
       'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188', // url
       {
@@ -91,7 +89,7 @@ const Login: React.FC = () => {
             />
             <Button
               className={`${styles.button} ${styles.submit}`}
-              onClick={getSignUpButtons}
+              onClick={signupRequest}
             >
               SIGN UP
             </Button>
@@ -121,7 +119,7 @@ const Login: React.FC = () => {
             <i className={styles.formLink}>忘记密码？</i>
             <Button
               className={`${styles.button} ${styles.submit}`}
-              onClick={getSignInButtons}
+              onClick={signinRequest}
             >
               SIGN IN
             </Button>
