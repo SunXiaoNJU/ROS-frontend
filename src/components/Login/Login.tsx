@@ -1,10 +1,13 @@
-import useUser from '@/models/global';
 import { request } from '@umijs/max';
-import { Button, Input } from 'antd';
+import { Button, Input, message } from 'antd';
 import { useState } from 'react';
 import styles from './Login.less';
 
-const Login: React.FC = () => {
+interface Props {
+  getLoginId: (value: string) => void;
+}
+
+const Login: React.FC<Props> = ({ getLoginId }) => {
   const [isgx, setIsgx] = useState(false);
   const [istxr, setIstxr] = useState(false);
   const [istxl, setIstxl] = useState(false);
@@ -17,10 +20,8 @@ const Login: React.FC = () => {
   const [signinId, setSigninId] = useState('');
   const [signinPwd, setSigninPwd] = useState('');
 
-  const { setId, access, setAccess } = useUser();
-
-  const signupRequest = () => {
-    request(
+  const signupRequest = async () => {
+    const res = request(
       'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188', // url
       {
         params: {
@@ -30,10 +31,13 @@ const Login: React.FC = () => {
         },
       },
     );
+    if (await res) {
+      message.success('注册成功！');
+    }
   };
 
-  const signinRequest = () => {
-    request(
+  const signinRequest = async () => {
+    const res = request(
       'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188', // url
       {
         params: {
@@ -42,8 +46,11 @@ const Login: React.FC = () => {
         },
       },
     );
-    setId(signinId);
-    setAccess(true);
+    if (await res) {
+      getLoginId(signinId);
+      sessionStorage.setItem('access', 'true');
+      message.success('登录成功！');
+    }
   };
 
   const changeForm = () => {
