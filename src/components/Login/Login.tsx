@@ -48,7 +48,7 @@ const Login: React.FC<Props> = ({ getLoginId }) => {
     );
     if (await res) {
       getLoginId(signinId);
-      sessionStorage.setItem('access', 'true');
+      sessionStorage.setItem('accessId', `${signinId}`);
       message.success('登录成功！');
     }
   };

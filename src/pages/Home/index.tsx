@@ -6,7 +6,7 @@ import { Button, Image } from 'antd';
 import { useState } from 'react';
 import styles from './index.less';
 
-sessionStorage.setItem('access', 'false');
+sessionStorage.setItem('accessId', '0');
 
 const HomePage: React.FC = () => {
   const name = DEFAULT_NAME;
