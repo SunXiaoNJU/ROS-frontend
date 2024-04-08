@@ -1,6 +1,7 @@
 import { request } from '@umijs/max';
 import { Button, Input, message } from 'antd';
 import { useState } from 'react';
+import { Md5 } from 'ts-md5';
 import styles from './Login.less';
 
 interface Props {
@@ -21,13 +22,14 @@ const Login: React.FC<Props> = ({ getLoginId }) => {
   const [signinPwd, setSigninPwd] = useState('');
 
   const signupRequest = async () => {
+    const encryptedPwd = Md5.hashStr('ROS' + signupPwd);
     const res = request(
       'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188', // url
       {
         params: {
           id: signupId,
           phone: signupPhone,
-          pwd: signupPwd,
+          pwd: encryptedPwd,
         },
       },
     );
@@ -37,12 +39,13 @@ const Login: React.FC<Props> = ({ getLoginId }) => {
   };
 
   const signinRequest = async () => {
+    const encryptedPwd = Md5.hashStr('ROS' + signinPwd);
     const res = request(
       'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188', // url
       {
         params: {
           id: signinId,
-          pwd: signinPwd,
+          pwd: encryptedPwd,
         },
       },
     );

@@ -44,7 +44,7 @@ const Submit: React.FC = () => {
   return loginType ? (
     <PageContainer ghost>
       {contextHolder}
-      <Space>
+      <Space className={styles.msg}>
         <Button
           type="primary"
           onClick={() => openNotificationWithIcon('info')}

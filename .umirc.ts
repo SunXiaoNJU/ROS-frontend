@@ -24,11 +24,6 @@ export default defineConfig({
       path: '/submit',
       component: './Submit',
     },
-    {
-      name: '权限演示',
-      path: '/access',
-      component: './Access',
-    },
   ],
   npmClient: 'pnpm',
 });
