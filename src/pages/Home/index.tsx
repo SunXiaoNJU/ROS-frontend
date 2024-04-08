@@ -6,12 +6,13 @@ import { Button, Image } from 'antd';
 import { useState } from 'react';
 import styles from './index.less';
 
-sessionStorage.setItem('accessId', '0');
+sessionStorage.setItem('accessId', '');
 
 const HomePage: React.FC = () => {
   const name = DEFAULT_NAME;
-  const [ishide, setIshide] = useState(true);
   const [loginId, setLoginId] = useState('');
+
+  const loginType = sessionStorage.getItem('accessId') !== '';
 
   const pageSide = (
     <div className={styles.img}>
@@ -19,19 +20,26 @@ const HomePage: React.FC = () => {
     </div>
   );
 
+  const quitLogin = () => {
+    sessionStorage.setItem('accessId', '');
+    setLoginId('');
+  };
+
   const getLoginId = (id: string) => setLoginId(id);
 
   return (
     <PageContainer ghost>
-      <div className={styles.loginBlock}>
-        <Button className={styles.loginButton} onClick={() => setIshide(false)}>
-          登录/注册
-        </Button>
-      </div>
+      {(loginType || loginId) && (
+        <div className={styles.loginBlock}>
+          <Button className={styles.loginButton} onClick={quitLogin}>
+            退出登录
+          </Button>
+        </div>
+      )}
       <div>
-        <Guide name={name} id={loginId} />
+        <Guide name={name} id={sessionStorage.getItem('accessId') + ''} />
       </div>
-      {ishide ? pageSide : <Login getLoginId={getLoginId} />}
+      {loginType || loginId ? pageSide : <Login getLoginId={getLoginId} />}
     </PageContainer>
   );
 };

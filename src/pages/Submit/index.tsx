@@ -39,7 +39,7 @@ const Submit: React.FC = () => {
     },
   };
 
-  const loginType = sessionStorage.getItem('accessId') !== '0';
+  const loginType = sessionStorage.getItem('accessId') !== '';
 
   return loginType ? (
     <PageContainer ghost>
