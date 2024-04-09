@@ -2,15 +2,13 @@
 
 ## 运行
 
-pnpm run dev
+pnpm dev
 
 ## 构建
 
-pnpm run build
+pnpm build
 
-`@umijs/max` 模板项目，更多功能参考 [Umi Max 简介](https://umijs.org/docs/max/introduce)
-
-要求 node 版本是 14 或以上！！
+`@umijs/max` 模板项目，要求 node 版本是 14 或以上！！更多功能参考 [Umi Max 简介](https://umijs.org/docs/max/introduce)
 
 ## 功能简介
 
@@ -22,7 +20,7 @@ pnpm run build
 
 2. 文件上传，实现拖拽上传和一键点击上传。
 
-- 理论上支持除文件夹外的任意文件类型，但我们更推荐使用压缩文件进行上传。详情可查看submit模块中的 '上传须知'。
+- 理论上支持除文件夹外的任意文件类型，但我们更推荐使用压缩文件进行上传，详情可查看'上传须知'。
 - 文件上传支持拖拽上传文件和一键点击上传两种形式，并会在下方显示上传结果。
 
 3. ROS 可视化演示，在前端反馈运行结果。
