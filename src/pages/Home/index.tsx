@@ -20,18 +20,16 @@ const HomePage: React.FC = () => {
     </div>
   );
 
-  const quitLogin = () => {
-    sessionStorage.setItem('accessId', '');
-    setLoginId('');
-  };
-
   const getLoginId = (id: string) => setLoginId(id);
 
   return (
     <PageContainer ghost>
       {(loginType || loginId) && (
         <div className={styles.loginBlock}>
-          <Button className={styles.loginButton} onClick={quitLogin}>
+          <Button
+            className={styles.loginButton}
+            onClick={() => location.reload()}
+          >
             退出登录
           </Button>
         </div>
