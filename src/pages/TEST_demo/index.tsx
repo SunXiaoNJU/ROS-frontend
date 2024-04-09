@@ -1,5 +1,5 @@
 import { PageContainer } from '@ant-design/pro-components';
-import { Link } from '@umijs/max';
+import { history } from '@umijs/max';
 import { Button } from 'antd';
 import { useRef, useState } from 'react';
 
@@ -59,9 +59,9 @@ const TEST: React.FC = () => {
       </div>
     </PageContainer>
   ) : (
-    <Link to="/home" prefetch reloadDocument>
-      home
-    </Link>
+    <div>
+      <Button onClick={() => history.push('/home')}>JUMP</Button>
+    </div>
   );
 };
 

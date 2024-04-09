@@ -25,6 +25,11 @@ export default defineConfig({
       component: './Submit',
     },
     {
+      name: 'ROS可视化',
+      path: '/visualization',
+      component: './Visualization',
+    },
+    {
       name: 'TEST',
       path: '/test',
       component: './TEST_demo',
