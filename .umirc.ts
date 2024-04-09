@@ -24,6 +24,11 @@ export default defineConfig({
       path: '/submit',
       component: './Submit',
     },
+    {
+      name: 'TEST',
+      path: '/test',
+      component: './TEST_demo',
+    },
   ],
   npmClient: 'pnpm',
 });

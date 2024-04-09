@@ -75,7 +75,9 @@ const Submit: React.FC = () => {
         showIcon
         closable
       />
-      <Link to="/home">跳转登录</Link>
+      <Link to="/home" prefetch>
+        跳转登录
+      </Link>
     </Space>
   );
 };

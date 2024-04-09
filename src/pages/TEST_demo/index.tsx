@@ -1,10 +1,9 @@
 import { PageContainer } from '@ant-design/pro-components';
-import { Access, useAccess } from '@umijs/max';
+import { Link } from '@umijs/max';
 import { Button } from 'antd';
 import { useRef, useState } from 'react';
 
-const AccessPage: React.FC = () => {
-  const access = useAccess();
+const TEST: React.FC = () => {
   let [counter, setCounter] = useState(0);
 
   function throttled(delay: number) {
@@ -43,16 +42,15 @@ const AccessPage: React.FC = () => {
     );
   };
 
-  return (
+  const loginType = sessionStorage.getItem('accessId') !== '';
+
+  return loginType ? (
     <PageContainer
       ghost
       header={{
-        title: '权限示例',
+        title: 'TEST',
       }}
     >
-      <Access accessible={access.canSeeAdmin}>
-        <Button>只有 Admin 可以看到这个按钮</Button>
-      </Access>
       <Tmp content="hello"></Tmp>
       <div ref={counterRef}>
         {`counter结果为${counter}`}
@@ -60,7 +58,11 @@ const AccessPage: React.FC = () => {
         <>{pullLoading()}</>
       </div>
     </PageContainer>
+  ) : (
+    <Link to="/home" prefetch reloadDocument>
+      home
+    </Link>
   );
 };
 
-export default AccessPage;
+export default TEST;
