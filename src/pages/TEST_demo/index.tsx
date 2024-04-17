@@ -5,6 +5,12 @@ import { useRef, useState } from 'react';
 
 const TEST: React.FC = () => {
   let [counter, setCounter] = useState(0);
+  let [sel, setSel] = useState('');
+
+  function handleSel(event: React.ChangeEvent<HTMLSelectElement>) {
+    setSel(event.target.value);
+    console.log(event.target.value);
+  }
 
   function throttled(delay: number) {
     // let startTime = Date.now();
@@ -33,25 +39,43 @@ const TEST: React.FC = () => {
   }
   const counterRef = useRef(null);
 
-  // 内嵌函数组件
-  const Tmp: React.FC<{ content: string }> = (props) => {
-    return (
-      <>
-        <p>{props.content}</p>
-      </>
-    );
-  };
-
   const loginType = sessionStorage.getItem('accessId') !== '';
 
   return loginType ? (
-    <PageContainer
-      ghost
-      header={{
-        title: 'TEST',
-      }}
-    >
-      <Tmp content="hello"></Tmp>
+    <PageContainer ghost title="TEST">
+      <select value={sel} onChange={handleSel}>
+        {/* 下拉选择 */}
+        <optgroup label="OS">
+          <option>ROS</option>
+          <option>RTOS</option>
+          <option>OpenRTM</option>
+        </optgroup>
+        <optgroup label="Fruits">
+          <option>Apple</option>
+          <option>Banana</option>
+          <option>Mango</option>
+        </optgroup>
+        <optgroup label="Vegetables">
+          <option>Tomato</option>
+          <option>Broccoli</option>
+          <option>Carrot</option>
+        </optgroup>
+      </select>
+      <p>
+        {/* 上标、下标 */}H<sub>2</sub>O 4<sup>2</sup> = 16
+      </p>
+      <p title="World Health Organization">
+        {/* 鼠标悬停显示title */}
+        WHO
+      </p>
+
+      <a href="document.pdf" download="document.pdf">
+        {/* 下载文件 */}Download PDF
+      </a>
+      <div contentEditable="true" spellCheck="true">
+        你可以编辑这段文字
+      </div>
+
       <div ref={counterRef}>
         {`counter结果为${counter}`}
         <Button onClick={throttled(1)}>throttled test</Button>
@@ -61,6 +85,9 @@ const TEST: React.FC = () => {
   ) : (
     <div>
       <Button onClick={() => history.push('/home')}>JUMP</Button>
+      <a href="/home" target="_blank">
+        HOME
+      </a>
     </div>
   );
 };

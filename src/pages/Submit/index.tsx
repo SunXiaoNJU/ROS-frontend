@@ -53,7 +53,7 @@ const Submit: React.FC = () => {
           上传须知
         </Button>
       </Space>
-      <Dragger {...props} className={styles.dragger}>
+      <Dragger {...props}>
         <p className="ant-upload-drag-icon">
           <InboxOutlined />
         </p>
