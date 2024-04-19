@@ -7,7 +7,11 @@ const Vision: React.FC = () => {
 
   return loginType ? (
     <PageContainer ghost>
-      <iframe src="https://webviz.io/app/" width="100%" height="800em"></iframe>
+      <iframe
+        src="https://webviz.io/app/?rosbridge-websocket-url=ws://121.41.128.141:9090"
+        width="100%"
+        height="800em"
+      ></iframe>
     </PageContainer>
   ) : (
     <Space>
