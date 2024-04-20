@@ -2,8 +2,9 @@ import Guide from '@/components/Guide';
 import Login from '@/components/Login';
 import { DEFAULT_NAME } from '@/constants';
 import { PageContainer } from '@ant-design/pro-components';
+import { request } from '@umijs/max';
 import { Button, Image } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './index.less';
 
 sessionStorage.setItem('accessId', '');
@@ -21,6 +22,21 @@ const HomePage: React.FC = () => {
   );
 
   const getLoginId = (id: string) => setLoginId(id);
+
+  useEffect(() => {
+    if (sessionStorage.getItem('accessId') === '') {
+      // 告知后端结束进程，如果存在进程就杀，不存在就无视
+      request(
+        'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188', // 后端接口
+        {
+          params: {
+            message: '用户退出登录',
+          },
+        },
+      );
+      console.log('hhh', loginId);
+    }
+  }, []);
 
   return (
     <PageContainer ghost>
