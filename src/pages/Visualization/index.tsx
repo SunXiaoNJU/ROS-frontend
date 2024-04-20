@@ -44,9 +44,10 @@ const Vision: React.FC = () => {
           使用提醒
         </Button>
       </Space>
-      <Space.Compact style={{ width: '16%' }} className={styles.input}>
+      <Space.Compact style={{ width: '19%' }} className={styles.input}>
         <Input
           placeholder="上传文件中launch的名称"
+          suffix=".launch"
           value={launchCnt}
           onChange={(e) => {
             setLaunchCnt(e.target.value);
