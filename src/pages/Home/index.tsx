@@ -25,7 +25,7 @@ const HomePage: React.FC = () => {
 
   useEffect(() => {
     if (sessionStorage.getItem('accessId') === '') {
-      // 告知后端结束进程，如果存在进程就杀，不存在就无视
+      // 告知后端结束进程，存在进程就杀，不存在就无视
       request(
         'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188', // 后端接口
         {
@@ -34,7 +34,6 @@ const HomePage: React.FC = () => {
           },
         },
       );
-      console.log('hhh', loginId);
     }
   }, []);
 
