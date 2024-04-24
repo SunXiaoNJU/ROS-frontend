@@ -29,11 +29,6 @@ export default defineConfig({
       path: '/visualization',
       component: './Visualization',
     },
-    {
-      name: 'TEST',
-      path: '/test',
-      component: './TEST_demo',
-    },
   ],
   npmClient: 'pnpm',
 });
