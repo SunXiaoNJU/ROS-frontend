@@ -13,9 +13,9 @@ const Vision: React.FC = () => {
   const [api, contextHolder] = notification.useNotification();
   const openNotificationWithIcon = (type: NotificationType) => {
     api[type]({
-      message: '上传launch名称',
+      message: '上传launch文件名',
       description:
-        '首先记得在【文件上传】中上传文件！然后再上传自己文件中launch的名称',
+        '首先记得在【文件上传】中上传文件！然后再上传文件中launch的文件名',
     });
   };
 
