@@ -14,7 +14,7 @@ const HomePage: React.FC = () => {
   const name = DEFAULT_NAME;
   const [loginId, setLoginId] = useState('');
 
-  const loginType = sessionStorage.getItem('accessId') !== '';
+  const loginType = sessionStorage.getItem('loginId') !== null;
 
   const pageSide = (
     <div className={styles.img}>
