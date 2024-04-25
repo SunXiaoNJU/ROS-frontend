@@ -38,6 +38,7 @@ const Submit: React.FC = () => {
       }
       if (status === 'done') {
         message.success(`${info.file.name} file uploaded successfully.`);
+        message.info('请移步【ROS可视化】板块');
       } else if (status === 'error') {
         message.error(`${info.file.name} file upload failed.`);
       }
