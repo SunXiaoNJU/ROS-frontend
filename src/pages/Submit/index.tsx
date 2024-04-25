@@ -14,7 +14,8 @@ const Submit: React.FC = () => {
   const openNotificationWithIcon = (type: NotificationType) => {
     api[type]({
       message: '上传文件格式要求',
-      description: '不支持上传文件夹，须压缩成.rar或.zip格式进行上传',
+      description:
+        '文件名请以学号命名。不支持上传文件夹，须压缩成.rar或.zip格式进行上传。',
     });
   };
 
@@ -22,6 +23,14 @@ const Submit: React.FC = () => {
     name: 'file',
     multiple: true,
     action: 'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188', // 后端接口url
+    beforeUpload: (fcFile) => {
+      const fileName = fcFile.name.split('.')[0];
+      // 检查拦截文件名不符合要求的上传文件
+      if (fileName !== sessionStorage.getItem('loginId')) {
+        message.error(`File name: ${fileName} is forbidden.`);
+        return false;
+      }
+    },
     onChange(info) {
       const { status } = info.file;
       if (status !== 'uploading') {
