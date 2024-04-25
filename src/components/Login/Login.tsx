@@ -52,6 +52,7 @@ const Login: React.FC<Props> = ({ getLoginId }) => {
     if (await res) {
       getLoginId(signinId);
       sessionStorage.setItem('accessId', `${signinId}`);
+      sessionStorage.setItem('loginId', `${signinId}`);
       message.success('登录成功！');
     }
   };

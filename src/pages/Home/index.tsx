@@ -7,6 +7,7 @@ import { Button, Image } from 'antd';
 import { useEffect, useState } from 'react';
 import styles from './index.less';
 
+sessionStorage.clear(); // 先清空SessionStorage再设置value
 sessionStorage.setItem('accessId', '');
 
 const HomePage: React.FC = () => {
@@ -40,18 +41,24 @@ const HomePage: React.FC = () => {
   return (
     <PageContainer ghost>
       {(loginType || loginId) && (
-        <div className={styles.loginBlock}>
-          <Button
-            className={styles.loginButton}
-            onClick={() => location.reload()}
-          >
-            退出登录
-          </Button>
-        </div>
+        <>
+          <div className={styles.loginBlock}>
+            <Button
+              className={styles.loginButton}
+              onClick={() => {
+                sessionStorage.clear();
+                location.reload();
+              }}
+            >
+              退出登录
+            </Button>
+          </div>
+          <div>
+            <Guide name={name} id={sessionStorage.getItem('loginId') + ''} />
+          </div>
+        </>
       )}
-      <div>
-        <Guide name={name} id={sessionStorage.getItem('accessId') + ''} />
-      </div>
+
       {loginType || loginId ? pageSide : <Login getLoginId={getLoginId} />}
     </PageContainer>
   );
