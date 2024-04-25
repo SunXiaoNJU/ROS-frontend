@@ -24,6 +24,7 @@ const Vision: React.FC = () => {
       {
         params: {
           launch: launchCnt,
+          id: sessionStorage.getItem('loginId'),
         },
       },
     );
