@@ -4,7 +4,7 @@ import { DEFAULT_NAME } from '@/constants';
 import { PageContainer } from '@ant-design/pro-components';
 import { request } from '@umijs/max';
 import { Button, Image } from 'antd';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from './index.less';
 
 sessionStorage.clear(); // 先清空SessionStorage再设置value
@@ -24,32 +24,26 @@ const HomePage: React.FC = () => {
 
   const getLoginId = (id: string) => setLoginId(id);
 
-  useEffect(() => {
-    if (sessionStorage.getItem('accessId') === '') {
-      // 告知后端结束进程，存在进程就杀，不存在就无视
-      request(
-        'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188', // 后端接口
-        {
-          params: {
-            message: '用户退出登录',
-          },
+  const loginOut = () => {
+    request(
+      'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188', // 后端接口
+      {
+        params: {
+          message: '用户退出登录',
+          id: sessionStorage.getItem('loginId'),
         },
-      );
-    }
-  }, []);
+      },
+    );
+    sessionStorage.clear();
+    location.reload();
+  };
 
   return (
     <PageContainer ghost>
       {(loginType || loginId) && (
         <>
           <div className={styles.loginBlock}>
-            <Button
-              className={styles.loginButton}
-              onClick={() => {
-                sessionStorage.clear();
-                location.reload();
-              }}
-            >
+            <Button className={styles.loginButton} onClick={loginOut}>
               退出登录
             </Button>
           </div>
