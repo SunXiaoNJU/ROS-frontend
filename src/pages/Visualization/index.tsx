@@ -7,23 +7,53 @@ import styles from './index.less';
 type NotificationType = 'success' | 'info' | 'warning' | 'error';
 
 const Vision: React.FC = () => {
-  const [launchCnt, setLaunchCnt] = useState('');
+  const [launchCnt, setLaunchCnt] = useState(
+    '输入待执行的launch文件和它所在的功能包名，空格分隔，例如：racecar.launch gazebo',
+  );
+  const [pyCnt, setPyCnt] = useState(
+    '等待webviz加载完毕，输入导航脚本和它所在的功能包名，空格分隔，例如：path.py gazebo',
+  );
 
   const [api, contextHolder] = notification.useNotification();
   const openNotificationWithIcon = (type: NotificationType) => {
     api[type]({
-      message: '上传launch文件名',
+      message: '使用引导',
       description:
-        '首先记得在【文件上传】中上传文件！然后再上传文件中launch的文件名',
+        '先在【文件上传】中上传文件！然后按照引导上传launch相关内容，等待可视化窗口加载完毕，最后上传导航相关内容。',
     });
   };
 
   const submitLaunchRequest = async () => {
+    const launchPattern = /^[a-zA-Z].*\.launch\s.*$/;
+    if (!launchPattern.test(launchCnt)) {
+      message.error('格式为xx.launch xx，请修改');
+      return false;
+    }
     const res = request(
       'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188', // 后端接口
       {
         params: {
           launch: launchCnt,
+          id: sessionStorage.getItem('loginId'),
+        },
+      },
+    );
+    if (await res) {
+      message.success('上传成功！');
+    }
+  };
+
+  const submitPyRequest = async () => {
+    const pyPattern = /^[a-zA-Z].*\.py\s.*$/;
+    if (!pyPattern.test(pyCnt)) {
+      message.error('格式为xx.py xx，请修改');
+      return false;
+    }
+    const res = request(
+      'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188', // 后端接口
+      {
+        params: {
+          py: pyCnt,
           id: sessionStorage.getItem('loginId'),
         },
       },
@@ -42,13 +72,12 @@ const Vision: React.FC = () => {
           onClick={() => openNotificationWithIcon('info')}
           className={styles.tipButton}
         >
-          使用提醒
+          使用引导
         </Button>
       </Space>
-      <Space.Compact style={{ width: '19%' }} className={styles.input}>
+
+      <Space.Compact style={{ width: '42%' }} className={styles.input}>
         <Input
-          placeholder="上传文件中launch的名称"
-          suffix=".launch"
           value={launchCnt}
           onChange={(e) => {
             setLaunchCnt(e.target.value);
@@ -61,9 +90,20 @@ const Vision: React.FC = () => {
 
       <iframe
         src="http://116.62.210.218:8080/?rosbridge-websocket-url=ws://121.41.128.141:9090"
-        width="100%"
-        height="750em"
+        className={styles.webviz}
       ></iframe>
+
+      <Space.Compact style={{ width: '44%' }} className={styles.input}>
+        <Input
+          value={pyCnt}
+          onChange={(e) => {
+            setPyCnt(e.target.value);
+          }}
+        />
+        <Button type="primary" onClick={submitPyRequest}>
+          上传
+        </Button>
+      </Space.Compact>
     </PageContainer>
   );
 };
