@@ -1,13 +1,12 @@
 import { PageContainer } from '@ant-design/pro-components';
-import { Link, request } from '@umijs/max';
-import { Alert, Button, Input, Space, message, notification } from 'antd';
+import { request } from '@umijs/max';
+import { Button, Input, Space, message, notification } from 'antd';
 import { useState } from 'react';
 import styles from './index.less';
 
 type NotificationType = 'success' | 'info' | 'warning' | 'error';
 
 const Vision: React.FC = () => {
-  const loginType = sessionStorage.getItem('accessId') !== '';
   const [launchCnt, setLaunchCnt] = useState('');
 
   const [api, contextHolder] = notification.useNotification();
@@ -33,7 +32,7 @@ const Vision: React.FC = () => {
     }
   };
 
-  return loginType ? (
+  return (
     <PageContainer ghost>
       {contextHolder}
       <Space className={styles.msg}>
@@ -65,19 +64,6 @@ const Vision: React.FC = () => {
         height="750em"
       ></iframe>
     </PageContainer>
-  ) : (
-    <Space>
-      <Alert
-        message="Warning"
-        description="还未登录，请点击【跳转登录】登录账号"
-        type="warning"
-        showIcon
-        closable
-      />
-      <Link to="/home" prefetch>
-        跳转登录
-      </Link>
-    </Space>
   );
 };
 

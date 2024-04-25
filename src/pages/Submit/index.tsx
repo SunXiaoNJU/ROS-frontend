@@ -1,8 +1,7 @@
 import { InboxOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
-import { Link } from '@umijs/max';
 import type { UploadProps } from 'antd';
-import { Alert, Button, Space, Upload, message, notification } from 'antd';
+import { Button, Space, Upload, message, notification } from 'antd';
 import styles from './index.less';
 
 type NotificationType = 'success' | 'info' | 'warning' | 'error';
@@ -39,9 +38,7 @@ const Submit: React.FC = () => {
     },
   };
 
-  const loginType = sessionStorage.getItem('accessId') !== '';
-
-  return loginType ? (
+  return (
     <PageContainer ghost>
       {contextHolder}
       <Space className={styles.msg}>
@@ -66,19 +63,6 @@ const Submit: React.FC = () => {
         </p>
       </Dragger>
     </PageContainer>
-  ) : (
-    <Space>
-      <Alert
-        message="Warning"
-        description="还未登录，请点击【跳转登录】登录账号"
-        type="warning"
-        showIcon
-        closable
-      />
-      <Link to="/home" prefetch>
-        跳转登录
-      </Link>
-    </Space>
   );
 };
 

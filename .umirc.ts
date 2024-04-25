@@ -23,11 +23,13 @@ export default defineConfig({
       name: '文件上传',
       path: '/submit',
       component: './Submit',
+      wrappers: ['@/wrappers/auth'],
     },
     {
       name: 'ROS可视化',
       path: '/visualization',
       component: './Visualization',
+      wrappers: ['@/wrappers/auth'],
     },
   ],
   npmClient: 'pnpm',
