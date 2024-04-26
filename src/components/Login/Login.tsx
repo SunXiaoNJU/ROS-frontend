@@ -28,8 +28,8 @@ const Login: React.FC<Props> = ({ getLoginId }) => {
       {
         params: {
           id: signupId,
-          phone: signupPhone,
           pwd: encryptedPwd,
+          phone: signupPhone,
         },
       },
     );
