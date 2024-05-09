@@ -76,7 +76,7 @@ const Vision: React.FC = () => {
         </Button>
       </Space>
 
-      <Space.Compact style={{ width: '42%' }} className={styles.input}>
+      <Space.Compact style={{ width: '60%' }} className={styles.input}>
         <Input
           value={launchCnt}
           onChange={(e) => {
@@ -93,7 +93,7 @@ const Vision: React.FC = () => {
         className={styles.webviz}
       ></iframe>
 
-      <Space.Compact style={{ width: '44%' }} className={styles.input}>
+      <Space.Compact style={{ width: '66%' }} className={styles.input}>
         <Input
           value={pyCnt}
           onChange={(e) => {

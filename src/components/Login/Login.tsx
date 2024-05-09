@@ -24,7 +24,7 @@ const Login: React.FC<Props> = ({ getLoginId }) => {
   const signupRequest = async () => {
     const encryptedPwd = Md5.hashStr('ROS' + signupPwd);
     const res = request(
-      'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188', // url
+      'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188', // /user/register
       {
         params: {
           id: signupId,
@@ -41,7 +41,7 @@ const Login: React.FC<Props> = ({ getLoginId }) => {
   const signinRequest = async () => {
     const encryptedPwd = Md5.hashStr('ROS' + signinPwd);
     const res = request(
-      'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188', // url
+      'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188', // /user/signin
       {
         params: {
           id: signinId,
