@@ -8,22 +8,31 @@ pnpm dev
 
 pnpm build
 
-`@umijs/max` 模板项目，要求 node 版本是 14 或以上！！更多功能参考 [Umi Max 简介](https://umijs.org/docs/max/introduce)
+`@umijs/max` template project requires node version 14 or above! ! For more functions, refer to [Umi Max Introduction](https://umijs.org/docs/max/introduce)
 
 ## 功能简介
 
-1. ROS 考试系统首页，实现登录/注册功能。
+1. The homepage of the ROS examination system implements the login/registration function
 
-- 用户使用前需在首页进行登录/注册操作，后续功能模块不支持对游客开放。
-- 其余模块部分支持点击【跳转登录】至首页进行登录/注册操作。
-- 本app采用'md5+盐'的方式对用户密码进行加密，保证用户的信息安全。
+- Users need to log in/register on the homepage before using it. Subsequent functional modules are not open to tourists.
+- The remaining modules support clicking [Jump to login] to go to the home page for login/registration operations.
+- This app uses 'md5+salt' method to encrypt user passwords to ensure user information security.
 
-2. 文件上传，实现拖拽上传和一键点击上传。
+2. File upload enables drag-and-drop upload and one-click upload
 
-- 遵循‘上传须知’的指示进行操作，强调：压缩文件名必须是学号！
-- 文件上传支持拖拽上传文件和一键点击上传两种形式，并会在下方显示上传结果。
+- Follow the instructions of ‘Upload Instructions’, emphasis: the compressed file name must be your student ID!
+- File upload supports drag-and-drop file uploading and one-click uploading, and the upload results will be displayed below.
 
-3. ROS 可视化演示，在前端反馈运行结果。
+3. ROS visualization and feedback of running results
 
-- 遵循‘使用引导’的指示进行操作，先上传完成文件，再操作可视化部分。
-- 先上传launch相关内容，等待可视化窗口加载完毕，再上传导航相关部分。
+- Follow the 'Guide to Use' instructions, upload the completed file first, and then operate the visualization part.
+- Upload launch-related content first, wait for the visualization window to be loaded, and then upload navigation-related parts.
+
+4. Data management
+
+- Present uploaded data.
+
+5. Article management
+
+- Publish articles using open source Tinymce.
+- Article summary, presenting article title and summary.
