@@ -11,6 +11,9 @@ dependencies:
   '@ant-design/pro-components':
     specifier: ^2.6.48
     version: 2.6.48(antd@5.13.2)(rc-field-form@1.41.0)(react-dom@18.2.0)(react@18.2.0)
+  '@tinymce/tinymce-react':
+    specifier: ^5.0.1
+    version: 5.0.1(react-dom@18.2.0)(react@18.2.0)
   '@umijs/max':
     specifier: ^4.1.1
     version: 4.1.1(@babel/core@7.23.7)(@types/react-dom@18.2.18)(@types/react@18.2.48)(dva@2.5.0-beta.2)(prettier@3.2.4)(rc-field-form@1.41.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)(webpack@5.89.0)
@@ -2309,6 +2312,18 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       use-sync-external-store: 1.2.0(react@18.2.0)
+    dev: false
+
+  /@tinymce/tinymce-react@5.0.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-tw6yNRqrMGP1iJNeY14wvGsUayC9fc1QpJa7tAvdmeBrUlllyF9PpsrbfvYd+2k8t+w0r2Hq+foTzLZ1d27Fyw==}
+    peerDependencies:
+      react: ^18.0.0 || ^17.0.1 || ^16.7.0
+      react-dom: ^18.0.0 || ^17.0.1 || ^16.7.0
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      tinymce: 7.1.0
     dev: false
 
   /@trysound/sax@0.2.0:
@@ -4875,6 +4890,11 @@ packages:
       which-typed-array: 1.1.13
     dev: false
 
+  /es-errors@1.3.0:
+    resolution: {integrity: sha512-Zf5H2Kxt2xjTvbJvP2ZWLEICxA6j+hAmMzIlypy4xcBg1vKVnx89Wy0GbS+kf5cwCVFFzdCFh2XSCFNULS6csw==}
+    engines: {node: '>= 0.4'}
+    dev: false
+
   /es-get-iterator@1.1.3:
     resolution: {integrity: sha512-sPZmqHBe6JIiTfN5q2pEi//TwxmAFHwj/XEuYjTuse78i8KxaqMTTzxPoFKuzRpDpTJ+0NAbpfenkmH2rePtuw==}
     dependencies:
@@ -5545,6 +5565,17 @@ packages:
       hasown: 2.0.0
     dev: false
 
+  /get-intrinsic@1.2.4:
+    resolution: {integrity: sha512-5uYhsJH8VJBTv7oslg4BznJYhDoRI6waYCxMmCdnTrcCrHA/fCFKoTFz2JKKE0HdDFUF7/oQuhzumXJK7paBRQ==}
+    engines: {node: '>= 0.4'}
+    dependencies:
+      es-errors: 1.3.0
+      function-bind: 1.1.2
+      has-proto: 1.0.1
+      has-symbols: 1.0.3
+      hasown: 2.0.0
+    dev: false
+
   /get-package-type@0.1.0:
     resolution: {integrity: sha512-pjzuKtY64GYfWizNAJ0fr9VqttZkNiK2iS430LtIHzjBEr6bX8Am2zm4sW4Ro5wjWW5cAlRL1qAMTcXbjNAO2Q==}
     engines: {node: '>=8.0.0'}
@@ -5686,7 +5717,7 @@ packages:
   /gopd@1.0.1:
     resolution: {integrity: sha512-d65bNlIadxvpb/A2abVdlqKqV563juRnZ1Wtk6s1sIR8uNsXR70xqIzVqxVf1eTqDunwT2MkczEeaezCKTZhwA==}
     dependencies:
-      get-intrinsic: 1.2.2
+      get-intrinsic: 1.2.4
     dev: false
 
   /graceful-fs@4.2.11:
@@ -10374,6 +10405,10 @@ packages:
 
   /tinycolor2@1.6.0:
     resolution: {integrity: sha512-XPaBkWQJdsf3pLKJV9p4qN/S+fm2Oj8AIPo1BTUhg5oxkvm9+SVEGFdhyOz7tTdUTfvxMiAs4sp6/eZO2Ew+pw==}
+    dev: false
+
+  /tinymce@7.1.0:
+    resolution: {integrity: sha512-KP5X9P7CIvaafu0XLiMidFWhjyYiOWcfY9hj/YbQSu9LcrZv7XXnXgb5Fgw7dA12lg7hqdTiRva+NKxoXaAbIA==}
     dev: false
 
   /titleize@3.0.0:

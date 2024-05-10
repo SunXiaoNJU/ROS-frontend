@@ -37,6 +37,12 @@ export default defineConfig({
       component: './Resource',
       wrappers: ['@/wrappers/auth'],
     },
+    {
+      name: '文章管理',
+      path: '/papers',
+      component: './Papers',
+      wrappers: ['@/wrappers/auth'],
+    },
   ],
   npmClient: 'pnpm',
 });
