@@ -25,9 +25,7 @@ const Papers: React.FC = () => {
     <PageContainer ghost>
       <ProList<{ title: string }>
         toolBarRender={() => {
-          return [
-            <Search key="4" placeholder="input search text" enterButton />,
-          ];
+          return [<Search key="4" placeholder="ROS" enterButton />];
         }}
         itemLayout="vertical"
         rowKey="id"
