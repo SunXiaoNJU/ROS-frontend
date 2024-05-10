@@ -22,7 +22,7 @@ const Submit: React.FC = () => {
   const props: UploadProps = {
     name: 'file',
     multiple: true,
-    action: 'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188', // 后端接口url
+    action: 'https://run.mocky.io/v3/dec3a9db-1cbe-4677-947d-048ac4f759d9', // 后端接口url
     beforeUpload: (fcFile) => {
       const fileName = fcFile.name.split('.')[0];
       // 检查拦截文件名不符合要求的上传文件

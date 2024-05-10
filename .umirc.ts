@@ -31,6 +31,12 @@ export default defineConfig({
       component: './Visualization',
       wrappers: ['@/wrappers/auth'],
     },
+    {
+      name: '资料管理',
+      path: '/resource',
+      component: './Resource',
+      wrappers: ['@/wrappers/auth'],
+    },
   ],
   npmClient: 'pnpm',
 });
