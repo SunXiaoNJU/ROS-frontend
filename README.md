@@ -1,16 +1,16 @@
 # README
 
-## 运行
+## run
 
 pnpm dev
 
-## 构建
+## Construct
 
 pnpm build
 
 `@umijs/max` template project requires node version 14 or above! ! For more functions, refer to [Umi Max Introduction](https://umijs.org/docs/max/introduce)
 
-## 功能简介
+## Function introduction
 
 1. The homepage of the ROS examination system implements the login/registration function
 
