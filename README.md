@@ -1,6 +1,6 @@
 # README
 
-## run
+## Run
 
 pnpm dev
 
@@ -8,7 +8,7 @@ pnpm dev
 
 pnpm build
 
-`@umijs/max` template project requires node version 14 or above! ! For more functions, refer to [Umi Max Introduction](https://umijs.org/docs/max/introduce)
+`@umijs/max` template project requires node version 14 or above! ! For more functions, refer to [Umi Max Introduction](https://umijs.org/docs/max/introduce).
 
 ## Function introduction
 
