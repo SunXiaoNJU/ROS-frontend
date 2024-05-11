@@ -1,7 +1,9 @@
 import { InboxOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
+import { request } from '@umijs/max';
 import type { UploadProps } from 'antd';
-import { Button, Space, Upload, message, notification } from 'antd';
+import { Button, Card, Space, Upload, message, notification } from 'antd';
+import { useState } from 'react';
 import styles from './index.less';
 
 type NotificationType = 'success' | 'info' | 'warning' | 'error';
@@ -10,6 +12,9 @@ const { Dragger } = Upload;
 
 const Submit: React.FC = () => {
   const [api, contextHolder] = notification.useNotification();
+  const [isShow, setIsShow] = useState(false);
+  const [waitNum, setWaitNum] = useState(0);
+  const [waitTime, setWaitTime] = useState(0);
 
   const openNotificationWithIcon = (type: NotificationType) => {
     api[type]({
@@ -38,7 +43,25 @@ const Submit: React.FC = () => {
       }
       if (status === 'done') {
         message.success(`${info.file.name} file uploaded successfully.`);
-        message.info('请移步【ROS可视化】板块');
+        // 设一个改变等待时间显示的state，文件上传成功后显示等待时间。
+        setIsShow(true);
+        // 向后端获取实时等待时间，并setInterval(updateWaitingInfo, 30000);
+        setInterval(async () => {
+          const res = request(
+            'https://run.mocky.io/v3/dec3a9db-1cbe-4677-947d-048ac4f759d9',
+            // '/api/waitingInfo'
+          );
+          if (await res) {
+            setWaitNum(0);
+            setWaitTime(0);
+          } else {
+            message.error('获取等待信息失败');
+          }
+        }, 30000);
+        // 等待人数为 0 时发送下方消息。
+        if (waitNum === 0) {
+          message.info('前面暂无等待同学，请移步【ROS可视化】板块');
+        }
       } else if (status === 'error') {
         message.error(`${info.file.name} file upload failed.`);
       }
@@ -72,6 +95,18 @@ const Submit: React.FC = () => {
           uploading banned files.
         </p>
       </Dragger>
+      {isShow ? (
+        <Space direction="horizontal" size={32} style={{ marginTop: '20px' }}>
+          <Card title="等待学生人数" style={{ width: 300 }}>
+            <p style={{ color: 'red' }}>{waitNum} 人</p>
+          </Card>
+          <Card title="预计等待时间" style={{ width: 300 }}>
+            <p style={{ color: 'red' }}>{waitTime} 分钟</p>
+          </Card>
+        </Space>
+      ) : (
+        <></>
+      )}
     </PageContainer>
   );
 };
