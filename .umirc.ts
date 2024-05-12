@@ -43,6 +43,12 @@ export default defineConfig({
       component: './Papers',
       wrappers: ['@/wrappers/auth'],
     },
+    {
+      name: '问答管理',
+      path: '/Q&A',
+      component: './Q&A',
+      wrappers: ['@/wrappers/auth'],
+    },
   ],
   npmClient: 'pnpm',
 });
