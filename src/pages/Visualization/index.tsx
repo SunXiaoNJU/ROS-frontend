@@ -19,7 +19,7 @@ const Vision: React.FC = () => {
     api[type]({
       message: '使用引导',
       description:
-        '先在【文件上传】中上传文件！然后按照引导上传launch相关内容，等待可视化窗口加载完毕，最后上传导航相关内容。',
+        '先在【文件上传】中上传文件！然后按照引导上传launch相关内容，等待可视化窗口加载完毕，上传导航相关内容。全部使用完毕，点击【结束进程】即可退出。',
     });
   };
 
@@ -63,6 +63,17 @@ const Vision: React.FC = () => {
     }
   };
 
+  const killProgressRequest = () => {
+    request('http://116.62.210.218/api/remote/complete-task', {
+      params: {
+        content: 'kill progress',
+        id: sessionStorage.getItem('loginId'),
+      },
+    });
+    sessionStorage.clear();
+    location.reload();
+  };
+
   return (
     <PageContainer ghost>
       {contextHolder}
@@ -104,6 +115,13 @@ const Vision: React.FC = () => {
           上传
         </Button>
       </Space.Compact>
+      <Button
+        type="primary"
+        onClick={killProgressRequest}
+        style={{ marginLeft: '15em' }}
+      >
+        结束进程
+      </Button>
     </PageContainer>
   );
 };

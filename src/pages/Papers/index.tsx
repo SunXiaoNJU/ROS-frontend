@@ -24,6 +24,7 @@ const Papers: React.FC = () => {
   return (
     <PageContainer ghost>
       <ProList<{ title: string }>
+        style={{ marginBottom: '1em' }}
         toolBarRender={() => {
           return [<Search key="4" placeholder="ROS" enterButton />];
         }}
@@ -107,7 +108,7 @@ const Papers: React.FC = () => {
       {/* <Image src="/文章管理.png"></Image> */}
       <Button
         type="dashed"
-        style={{ marginRight: '12px', marginLeft: '900px' }}
+        style={{ marginRight: '12px', marginLeft: '75em', marginTop: '1em' }}
       >
         保存草稿
       </Button>
