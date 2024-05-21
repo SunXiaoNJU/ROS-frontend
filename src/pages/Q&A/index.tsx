@@ -1,4 +1,4 @@
-import MyProList from '@/components/MyProList/MyProList';
+import MyProList from '@/components/MyProList';
 import { PageContainer, ProList } from '@ant-design/pro-components';
 import { Space, Tag } from 'antd';
 import Search from 'antd/es/input/Search';
