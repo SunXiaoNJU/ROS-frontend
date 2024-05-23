@@ -20,14 +20,15 @@ const Submit: React.FC = () => {
     api[type]({
       message: '上传文件格式要求',
       description:
-        '文件名请以学号命名。不支持上传文件夹，须压缩成.rar或.zip格式进行上传。',
+        '文件名请以学号命名。不支持上传文件夹，须压缩成.zip格式进行上传。',
     });
   };
 
   const props: UploadProps = {
     name: 'file',
     multiple: true,
-    action: 'https://run.mocky.io/v3/dec3a9db-1cbe-4677-947d-048ac4f759d9', // 后端接口url
+    action: 'http://116.62.210.218:9090/try/getfile',
+    // action: 'https://run.mocky.io/v3/dec3a9db-1cbe-4677-947d-048ac4f759d9',
     beforeUpload: (fcFile) => {
       const fileName = fcFile.name.split('.')[0];
       // 检查拦截文件名不符合要求的上传文件

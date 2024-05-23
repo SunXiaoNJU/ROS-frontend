@@ -40,7 +40,7 @@ export const layout = () => {
 };
 
 export const request: RequestConfig = {
-  timeout: 2000,
+  timeout: 90000,
   errorConfig: {
     // 错误抛出
     errorThrower: (res: ResponseStructure) => {

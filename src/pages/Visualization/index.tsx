@@ -30,16 +30,19 @@ const Vision: React.FC = () => {
       return false;
     }
     const res = request(
-      'https://run.mocky.io/v3/dec3a9db-1cbe-4677-947d-048ac4f759d9', // 后端接口
+      // 'https://run.mocky.io/v3/dec3a9db-1cbe-4677-947d-048ac4f759d9', // 后端接口
+      'http://116.62.210.218:9090/try/getnamelaunch', // p1
       {
         params: {
-          launch: launchCnt,
+          p1: launchCnt,
           id: sessionStorage.getItem('loginId'),
         },
       },
     );
+    message.success('上传成功！请等待后续反馈~');
     if (await res) {
-      message.success('上传成功！');
+      const data = await res;
+      message.info('反馈：' + data.data);
     }
   };
 
@@ -50,16 +53,19 @@ const Vision: React.FC = () => {
       return false;
     }
     const res = request(
-      'https://run.mocky.io/v3/dec3a9db-1cbe-4677-947d-048ac4f759d9', // 后端接口
+      // 'https://run.mocky.io/v3/dec3a9db-1cbe-4677-947d-048ac4f759d9',
+      'http://116.62.210.218:9090/try/getnamepy', // p2
       {
         params: {
-          py: pyCnt,
+          p2: pyCnt,
           id: sessionStorage.getItem('loginId'),
         },
       },
     );
+    message.success('上传成功！请等待后续反馈~');
     if (await res) {
-      message.success('上传成功！');
+      const data = await res;
+      message.info('反馈：' + data.data);
     }
   };
 
