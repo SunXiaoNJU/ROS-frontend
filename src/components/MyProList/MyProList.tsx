@@ -24,7 +24,7 @@ const MyProList: React.FC<Props> = (props: Props) => {
 
   return (
     <ProList
-      style={{ marginTop: '12px' }}
+      style={{ marginBottom: '12px' }}
       itemLayout="vertical"
       rowKey="id"
       dataSource={dataSource}

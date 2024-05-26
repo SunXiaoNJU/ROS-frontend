@@ -1,90 +1,48 @@
-import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
-import { PageContainer, ProList } from '@ant-design/pro-components';
+import MyProList from '@/components/MyProList';
+import { PageContainer } from '@ant-design/pro-components';
 import { Editor } from '@tinymce/tinymce-react';
-import { Button, Tag } from 'antd';
+import { Button, Card, FloatButton, Space, message } from 'antd';
 import Search from 'antd/es/input/Search';
-import React from 'react';
+import React, { useState } from 'react';
 
 const Papers: React.FC = () => {
-  const IconText = ({ icon, text }: { icon: any; text: string }) => (
-    <span>
-      {React.createElement(icon, { style: { marginInlineEnd: 8 } })}
-      {text}
-    </span>
-  );
-
-  const ros = <div style={{ color: 'red', display: 'inline-block' }}>ROS</div>;
-
+  const [isshow, setIsshow] = useState(false);
+  const [isPersonal, setIsPersonal] = useState(false);
   const dataSource = [
     {
       title: 'ROS智能仿真研究实战',
     },
   ];
 
+  const onSearch = () => {
+    message.success('已找到相关文章');
+    setIsshow(true);
+  };
+
   return (
     <PageContainer ghost>
-      <ProList<{ title: string }>
-        style={{ marginBottom: '1em' }}
-        toolBarRender={() => {
-          return [<Search key="4" placeholder="ROS" enterButton />];
-        }}
-        itemLayout="vertical"
-        rowKey="id"
-        headerTitle="文章汇总"
-        dataSource={dataSource}
-        metas={{
-          title: {},
-          description: {
-            render: () => (
-              <>
-                <Tag>ROS</Tag>
-                <Tag>机器人</Tag>
-                <Tag>webviz</Tag>
-              </>
-            ),
-          },
-          actions: {
-            render: () => [
-              <IconText
-                icon={StarOutlined}
-                text="156"
-                key="list-vertical-star-o"
-              />,
-              <IconText
-                icon={LikeOutlined}
-                text="520"
-                key="list-vertical-like-o"
-              />,
-              <IconText
-                icon={MessageOutlined}
-                text="6"
-                key="list-vertical-message"
-              />,
-            ],
-          },
-          extra: {
-            render: () => <img width={272} alt="logo" src="/ros.svg" />,
-          },
-          content: {
-            render: () => {
-              return (
-                <div>
-                  在实现⾃主探索之前，先介绍基于 {ros}{' '}
-                  Navigation的机器⼈导航框架，{ros}{' '}
-                  Navigation是后续学习更⾼级的导航算法的基础。在仿真中，读者将跟随讲解⼀步⼀
-                  步配置机器⼈导航环境，包括传感器的设置，局部避障算法的配置等等，最终将实现
-                  在仿真环境中移动机器⼈的导航与避障。
-                  1,机器⼈仿真环境建⽴与Navigation栈配置
-                  1.1,机器⼈Gazebo环境搭建
-                  在已经安装了Gazebo的ubuntu18.04系统上，下载⽤于turtlebot3机器⼈仿真的软件
-                  包。
-                </div>
-              );
-            },
-          },
-        }}
-      />
-
+      <Search
+        placeholder="ROS"
+        onSearch={onSearch}
+        enterButton
+        style={{ marginBottom: '12px' }}
+      ></Search>
+      {isshow ? (
+        <MyProList
+          title={dataSource[0].title}
+          content="在实现⾃主探索之前，先介绍基于 ROS
+                  Navigation的机器⼈导航框架，ROS
+                  Navigation是后续学习更⾼级的导航算法的基础。在仿真中，读者将跟随讲解⼀步⼀步配置机器⼈导航环境，包括传感器的设置，局部避障算法的配置等等，最终将实现在仿真环境中移动机器⼈的导航与避障。
+                  1.机器⼈仿真环境建⽴与Navigation栈配置
+                  1.1.机器⼈Gazebo环境搭建
+                  在已经安装了Gazebo的ubuntu18.04系统上，下载⽤于turtlebot3机器⼈仿真的软件包。"
+        ></MyProList>
+      ) : (
+        <></>
+      )}
+      <a href="http://localhost:5173/" target="_blank" rel="noreferrer">
+        文章编辑
+      </a>
       <Editor
         apiKey="p9alq9d11jptw4zdda4v248my0wtz2q7fnr4y2kuof18deud"
         init={{
@@ -106,13 +64,62 @@ const Papers: React.FC = () => {
         initialValue="请编辑你的文章"
       />
       {/* <Image src="/文章管理.png"></Image> */}
-      <Button
-        type="dashed"
-        style={{ marginRight: '12px', marginLeft: '75em', marginTop: '1em' }}
-      >
+      <Button type="dashed" style={{ float: 'right', marginLeft: '12px' }}>
         保存草稿
       </Button>
-      <Button type="primary">发布文章</Button>
+      <Button type="primary" style={{ float: 'right' }}>
+        发布文章
+      </Button>
+      {isPersonal ? (
+        <Space direction="horizontal" size={32} style={{ marginTop: '12px' }}>
+          <Card
+            title="收藏：156"
+            bordered={false}
+            style={{ width: 300, marginTop: '12px' }}
+          >
+            <p>用户9sdfjs93df</p>
+            <p>ROS大神</p>
+            <p>Ohhhhh</p>
+          </Card>
+          <Card
+            title="点赞数：520"
+            bordered={false}
+            style={{ width: 300, marginTop: '12px' }}
+          >
+            <p>beat</p>
+            <p>用户whatever_asdfdsf</p>
+            <p>z_z</p>
+          </Card>
+          <Card
+            title="评论数：6"
+            bordered={false}
+            style={{ width: 300, marginTop: '12px' }}
+          >
+            <p>z_z</p>
+            <p>用户89879isdfn</p>
+            <p>o_O</p>
+          </Card>
+          <Card
+            title="转发数：37"
+            bordered={false}
+            style={{ width: 300, marginTop: '12px' }}
+          >
+            <p>ROS大神</p>
+            <p>用户whatever_asdfdsf</p>
+            <p>o_O</p>
+          </Card>
+        </Space>
+      ) : (
+        <></>
+      )}
+
+      <FloatButton
+        tooltip={<div>个人信息</div>}
+        onClick={() => {
+          const isPersonalNow = isPersonal;
+          setIsPersonal(!isPersonalNow);
+        }}
+      />
     </PageContainer>
   );
 };

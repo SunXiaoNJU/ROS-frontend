@@ -1,5 +1,6 @@
 import type { ProColumns } from '@ant-design/pro-components';
 import { EditableProTable, ProFormRadio } from '@ant-design/pro-components';
+import { message } from 'antd';
 import Search from 'antd/es/input/Search';
 import { SearchProps } from 'antd/lib/input';
 import React, { useState } from 'react';
@@ -22,9 +23,6 @@ type DataSourceType = {
   update_at?: number;
   children?: DataSourceType[];
 };
-
-const onSearch: SearchProps['onSearch'] = (value, _e, info) =>
-  console.log(info?.source, value);
 
 const defaultData: DataSourceType[] = [
   {
@@ -63,6 +61,7 @@ export default () => {
   const [position, setPosition] = useState<'top' | 'bottom' | 'hidden'>(
     'bottom',
   );
+  const [isshow, setIsshow] = useState(false);
 
   const columns: ProColumns<DataSourceType>[] = [
     {
@@ -102,13 +101,8 @@ export default () => {
       title: '操作',
       valueType: 'option',
       width: 200,
-      render: (text, record, _, action) => [
-        <a
-          key="editable"
-          onClick={() => {
-            action?.startEditable?.(record.id);
-          }}
-        >
+      render: (text, record) => [
+        <a key="preLook" href="/ROS_robot.pdf" target="_blank" rel="noreferrer">
           在线预览
         </a>,
         <a
@@ -122,7 +116,11 @@ export default () => {
       ],
     },
   ];
-
+  const onSearch: SearchProps['onSearch'] = (value, _e, info) => {
+    console.log(info?.source, value);
+    message.success('已找到相关资料');
+    setIsshow(true);
+  };
   return (
     <div>
       <Search
@@ -131,63 +129,67 @@ export default () => {
         enterButton
         width="10px"
       />
-      <EditableProTable<DataSourceType>
-        rowKey="id"
-        headerTitle="资料管理"
-        maxLength={5}
-        scroll={{
-          x: 960,
-        }}
-        recordCreatorProps={
-          position !== 'hidden'
-            ? {
-                position: position as 'top',
-                record: () => ({ id: (Math.random() * 1000000).toFixed(0) }),
-              }
-            : false
-        }
-        loading={false}
-        toolBarRender={() => [
-          <ProFormRadio.Group
-            key="render"
-            fieldProps={{
-              value: position,
-              onChange: (e) => setPosition(e.target.value),
-            }}
-            options={[
-              {
-                label: '添加到顶部',
-                value: 'top',
-              },
-              {
-                label: '添加到底部',
-                value: 'bottom',
-              },
-              {
-                label: '隐藏',
-                value: 'hidden',
-              },
-            ]}
-          />,
-        ]}
-        columns={columns}
-        request={async () => ({
-          data: defaultData,
-          total: 3,
-          success: true,
-        })}
-        value={dataSource}
-        onChange={setDataSource}
-        editable={{
-          type: 'multiple',
-          editableKeys,
-          onSave: async (rowKey, data, row) => {
-            console.log(rowKey, data, row);
-            await waitTime(2000);
-          },
-          onChange: setEditableRowKeys,
-        }}
-      />
+      {isshow ? (
+        <EditableProTable<DataSourceType>
+          rowKey="id"
+          headerTitle="资料管理"
+          maxLength={5}
+          scroll={{
+            x: 960,
+          }}
+          recordCreatorProps={
+            position !== 'hidden'
+              ? {
+                  position: position as 'top',
+                  record: () => ({ id: (Math.random() * 1000000).toFixed(0) }),
+                }
+              : false
+          }
+          loading={false}
+          toolBarRender={() => [
+            <ProFormRadio.Group
+              key="render"
+              fieldProps={{
+                value: position,
+                onChange: (e) => setPosition(e.target.value),
+              }}
+              options={[
+                {
+                  label: '添加到顶部',
+                  value: 'top',
+                },
+                {
+                  label: '添加到底部',
+                  value: 'bottom',
+                },
+                {
+                  label: '隐藏',
+                  value: 'hidden',
+                },
+              ]}
+            />,
+          ]}
+          columns={columns}
+          request={async () => ({
+            data: defaultData,
+            total: 3,
+            success: true,
+          })}
+          value={dataSource}
+          onChange={setDataSource}
+          editable={{
+            type: 'multiple',
+            editableKeys,
+            onSave: async (rowKey, data, row) => {
+              console.log(rowKey, data, row);
+              await waitTime(2000);
+            },
+            onChange: setEditableRowKeys,
+          }}
+        />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
