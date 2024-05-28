@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[899],{85540:function(l,t,e){e.r(t);var n=e(96043),u=e(62086);t.default=function(){var s=sessionStorage.getItem("loginId")!==null;return s?(0,u.jsx)(n.Outlet,{}):(0,u.jsx)(n.Navigate,{to:"/Home"})}}}]);
