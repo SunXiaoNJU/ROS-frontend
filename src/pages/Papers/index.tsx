@@ -63,7 +63,6 @@ const Papers: React.FC = () => {
         }}
         initialValue="请编辑你的文章"
       />
-      {/* <Image src="/文章管理.png"></Image> */}
       <Button type="dashed" style={{ float: 'right', marginLeft: '12px' }}>
         保存草稿
       </Button>
