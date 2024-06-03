@@ -26,7 +26,7 @@ const HomePage: React.FC = () => {
 
   const loginOut = () => {
     request(
-      'https://run.mocky.io/v3/dec3a9db-1cbe-4677-947d-048ac4f759d9', // 后端接口
+      'http://116.62.210.218:9090/try/logout', // 后端接口
       {
         params: {
           message: '用户退出登录',

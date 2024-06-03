@@ -28,7 +28,6 @@ const Submit: React.FC = () => {
     name: 'file',
     multiple: true,
     action: 'http://116.62.210.218:9090/try/getfile',
-    // action: 'https://run.mocky.io/v3/dec3a9db-1cbe-4677-947d-048ac4f759d9',
     beforeUpload: (fcFile) => {
       const fileName = fcFile.name.split('.')[0];
       // 检查拦截文件名不符合要求的上传文件
@@ -48,10 +47,7 @@ const Submit: React.FC = () => {
         setIsShow(true);
         // 向后端获取实时等待时间，并setInterval(updateWaitingInfo, 30000);
         setInterval(async () => {
-          const res = request(
-            'https://run.mocky.io/v3/dec3a9db-1cbe-4677-947d-048ac4f759d9',
-            // '/api/waitingInfo'
-          );
+          const res = request('http://116.62.210.218:9090/api/waitingInfo');
           if (await res) {
             setWaitNum(0);
             setWaitTime(0);

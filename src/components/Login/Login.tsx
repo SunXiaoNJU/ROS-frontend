@@ -23,16 +23,13 @@ const Login: React.FC<Props> = ({ getLoginId }) => {
 
   const signupRequest = async () => {
     const encryptedPwd = Md5.hashStr('ROS' + signupPwd);
-    const res = request(
-      'https://run.mocky.io/v3/dec3a9db-1cbe-4677-947d-048ac4f759d9', // /user/register
-      {
-        params: {
-          id: signupId,
-          pwd: encryptedPwd,
-          phone: signupPhone,
-        },
+    const res = request('http://116.62.210.218:9090/user/register', {
+      params: {
+        id: signupId,
+        pwd: encryptedPwd,
+        phone: signupPhone,
       },
-    );
+    });
     if (await res) {
       message.success('注册成功！');
     }
@@ -40,15 +37,12 @@ const Login: React.FC<Props> = ({ getLoginId }) => {
 
   const signinRequest = async () => {
     const encryptedPwd = Md5.hashStr('ROS' + signinPwd);
-    const res = request(
-      'https://run.mocky.io/v3/dec3a9db-1cbe-4677-947d-048ac4f759d9', // /user/signin
-      {
-        params: {
-          id: signinId,
-          pwd: encryptedPwd,
-        },
+    const res = request('http://116.62.210.218:9090/user/signin', {
+      params: {
+        id: signinId,
+        pwd: encryptedPwd,
       },
-    );
+    });
     if (await res) {
       getLoginId(signinId);
       sessionStorage.setItem('accessId', `${signinId}`);
